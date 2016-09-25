@@ -74,6 +74,4 @@ class SendGameTurnOpponentEmail(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/crons/send_active_game_reminder', SendActiveGameReminderEmail),
     ('/tasks/send_gameturn_notification_email', SendGameTurnOpponentEmail),
-    ('/crons/send_reminder', SendReminderEmail),
-    ('/tasks/cache_average_attempts', UpdateAverageMovesRemaining),
 ], debug=True)
