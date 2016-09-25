@@ -92,16 +92,15 @@ logic json objects into arrays and some arithmetic to obtain game difference poi
  - **get_game**
     - Path: 'getGame'
     - Method: GET
-    - Parameters: safe_url, game_id, creator_name
+    - Parameters: game_id 
     - Returns: OthelloGameForm with current game state.
-    - Description: Returns the current state of an Othello game. Endpoint can either
-    search directly with safe_url, with game id, which is provided when game is 
-    created, or with a combination of creator user name and game id.
+    - Description: Returns the current state of an Othello game given a valid
+    game_id is provided, if no game can be found with an id, it will return no results.
     
  - **get_user_games**
     - Path: 'getUserGames'
     - Method: GET
-    - Parameters: user name.
+    - Parameters: user name
     - Returns: OthelloGameForms presenting game information for all user's active
     games.
     - Description: Returns a game description, including the game board for all
@@ -109,21 +108,20 @@ logic json objects into arrays and some arithmetic to obtain game difference poi
 
  - **make_move**
     - Path: 'makeMove'
-    - Method: POST
-    - Parameters: game_id, user_name, move, safe_url
+    - Method: PUT
+    - Parameters: game_id, user_name, move
     - Returns: A message indicating the if a move was valid, or invalid. Returns 
     coordinates of move from CPU when in SINGLE PLAYER MODE.
-    - Description: Takes a pair of row, column coordinates in x,y form, or a single
-    digi, 0 for abandoning a game or 9 to yield turn to the opponent.
-    API user must ensure input is properly entered. A message will be returned giving
-    information if the move was successful, give a reason if it wasn't, and will
-    have the CPU move coordinates in case of a single player game. If the board
-    is filled to 64 pieces, the game ends.
+    - Description: Takes a pair of x,y coordinates as input, 0 for abandoning a 
+    game or 9 to yield turn to the opponent. A message will be returned giving
+    information if the input was valid, or the move was successful, or give a reason 
+    if it wasn't, and will include the CPU move coordinates for a single player game. 
+    If the board's 64 pieces are filled, the game ends.
 
  - **cancel_game**
     - Path: 'cancelGame'
-    - Method: POST
-    - Parameters: user_name, game_id, safe_url
+    - Method: PUT
+    - Parameters: user_name, game_id. user_name must be user that requested game creation.
     - Returns: Message indicating game was cancelled.
     - Description: The game will be set to status CANCELLED, but the game state will
     be kept. It raises NotFound exception is game can't be found, or a BadRequest
