@@ -87,6 +87,7 @@ class OthelloGameHistoryForm(messages.Message):
     game_id = messages.IntegerField(1)
     moves = messages.StringField(2)
     game_status = messages.StringField(3)
+    message = messages.StringField(4)
 
 
 class OthelloHighScoreEntryForm(messages.Message):

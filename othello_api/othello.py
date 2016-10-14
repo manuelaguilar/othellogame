@@ -544,7 +544,7 @@ class OthelloApi(remote.Service):
         game = get_by_game_id(game_id=request.game_id)
         if not game:
             return OthelloGameHistoryForm(
-                    message='No history found for game ' + request.game_id)
+                    message='No history found for game ' + str(request.game_id))
         # query Othello game history entity with game id request.game_id
         game_history = OthelloGameHistory.query(ancestor=game.key).get()
         if not game_history:
