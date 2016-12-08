@@ -323,7 +323,7 @@ class OthelloApi(remote.Service):
         isvalid, message = game_logic._make_move(player_turn, request.move)
         print message
 
-        # load an update game history in memory
+        # load and update game history in memory
         game_history = OthelloGameHistory.query(ancestor=game.key).get()
         if not game_history.moves:
             moves = []
